@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vehicle.API.Data.Entities;
+using Vehicles.API.Data.Entities;
 
 namespace Vehicle.API.Data
 {
@@ -14,12 +15,14 @@ namespace Vehicle.API.Data
         
         }
 
+        public DbSet<Brand> Brand { get; set; }
         public DbSet<Procedure> Procedure { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Brand>().HasIndex(X => X.Description).IsUnique();
             modelBuilder.Entity<VehicleType>().HasIndex(X => X.Description).IsUnique();
             modelBuilder.Entity<Procedure>().HasIndex(X => X.Description).IsUnique();
         }
