@@ -9,16 +9,16 @@ using Vehicle.API.Data.Entities;
 
 namespace Vehicle.API.Controllers
 {
-    public class BrandsController : Controller
+    public class DocumentTypesController : Controller
     {
         private readonly DataContext _context;
-        public BrandsController(DataContext context)
+        public DocumentTypesController(DataContext context)
         {
             _context = context;
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Brand.ToListAsync());
+            return View(await _context.DocumentTypes.ToListAsync());
         }
         // GET: VehicleTypes/Create
         public IActionResult Create()
@@ -32,13 +32,13 @@ namespace Vehicle.API.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Brand brand)
+        public async Task<IActionResult> Create(DocumentType documentType)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Add(brand);
+                    _context.Add(documentType);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -46,7 +46,7 @@ namespace Vehicle.API.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Ya existe este tipo de Procedimiento");
+                        ModelState.AddModelError(string.Empty, "Ya existe este tipo de Documento");
                     }
                     else
                     {
@@ -58,7 +58,7 @@ namespace Vehicle.API.Controllers
                     ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
-            return View(brand);
+            return View(documentType);
         }
 
         // GET: VehicleTypes/Edit/5
@@ -69,12 +69,12 @@ namespace Vehicle.API.Controllers
                 return NotFound();
             }
 
-            Brand procedure = await _context.Brand.FindAsync(id);
-            if (procedure == null)
+            DocumentType documentType = await _context.DocumentTypes.FindAsync(id);
+            if (documentType == null)
             {
                 return NotFound();
             }
-            return View(procedure);
+            return View(documentType);
         }
 
         // POST: VehicleTypes/Edit/5
@@ -82,9 +82,9 @@ namespace Vehicle.API.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Brand brand)
+        public async Task<IActionResult> Edit(int id, DocumentType documentType)
         {
-            if (id != brand.Id)
+            if (id != documentType.Id)
             {
                 return NotFound();
             }
@@ -93,7 +93,7 @@ namespace Vehicle.API.Controllers
             {
                 try
                 {
-                    _context.Update(brand);
+                    _context.Update(documentType);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
@@ -101,7 +101,7 @@ namespace Vehicle.API.Controllers
                 {
                     if (dbUpdateException.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Ya existe este Procedimiento");
+                        ModelState.AddModelError(string.Empty, "Ya existe este Tipo de documento");
                     }
                     else
                     {
@@ -113,7 +113,7 @@ namespace Vehicle.API.Controllers
                     ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
-            return View(brand);
+            return View(documentType);
         }
 
         // GET: VehicleTypes/Delete/5
@@ -124,14 +124,14 @@ namespace Vehicle.API.Controllers
                 return NotFound();
             }
 
-            Brand brand = await _context.Brand
+            DocumentType documentType = await _context.DocumentTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (brand == null)
+            if (documentType == null)
             {
                 return NotFound();
             }
 
-            _context.Brand.Remove(brand);
+            _context.DocumentTypes.Remove(documentType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
