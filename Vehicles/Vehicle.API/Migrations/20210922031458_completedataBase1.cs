@@ -2,7 +2,7 @@
 
 namespace Vehicle.API.Migrations
 {
-    public partial class addDB : Migration
+    public partial class completedataBase1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
