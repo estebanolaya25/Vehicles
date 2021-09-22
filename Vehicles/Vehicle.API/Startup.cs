@@ -13,7 +13,7 @@ using Vehicle.API.Data.Entities;
 using Vehicle.API.Helpers;
 
 using System;
-
+using Vehicles.API.Helpers;
 
 namespace Vehicle.API
 {
@@ -31,9 +31,7 @@ namespace Vehicle.API
         {
             services.AddControllersWithViews();
             services.AddIdentity<User, IdentityRole>(x =>
-            {
-                x.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
-                x.SignIn.RequireConfirmedEmail = true;
+            {                               
                 x.User.RequireUniqueEmail = true;
                 x.Password.RequireDigit = false;
                 x.Password.RequiredUniqueChars = 0;
