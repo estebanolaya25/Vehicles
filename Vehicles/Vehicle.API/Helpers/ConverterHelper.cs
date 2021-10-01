@@ -82,11 +82,15 @@ namespace Vehicle.API.Helpers
             };
         }
 
-        /*public async Task<Vehicle.API.Data.Entities.Vehicle> ToVehicleAsync(VehicleViewModel model, bool isNew)
+       
+
+    
+
+        public async Task<Vehicle.API.Data.Entities.Vehicle> ToVehicleAsync(VehicleViewModel model, bool isNew)
         {
-            return new Vehicle
+            return new Vehicle.API.Data.Entities.Vehicle
             {
-                Brand = await _context.Brands.FindAsync(model.BrandId),
+                Brand = await _context.Brand.FindAsync(model.BrandId),
                 Color = model.Color,
                 Id = isNew ? 0 : model.Id,
                 Line = model.Line,
@@ -97,7 +101,7 @@ namespace Vehicle.API.Helpers
             };
         }
 
-        public VehicleViewModel ToVehicleViewModel(Vehicle vehicle)
+        public VehicleViewModel ToVehicleViewModel(Data.Entities.Vehicle vehicle)
         {
             return new VehicleViewModel
             {
@@ -114,7 +118,7 @@ namespace Vehicle.API.Helpers
                 VehicleTypeId = vehicle.VehicleType.Id,
                 VehicleTypes = _combosHelper.GetComboVehicleTypes()
             };
-        }*/
+        }
 
     }
 }

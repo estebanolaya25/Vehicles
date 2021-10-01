@@ -31,7 +31,8 @@ namespace Vehicle.API
         {
             services.AddControllersWithViews();
             services.AddIdentity<User, IdentityRole>(x =>
-            {                               
+            {
+                //x.SignIn.RequireConfirmedEmail = true;
                 x.User.RequireUniqueEmail = true;
                 x.Password.RequireDigit = false;
                 x.Password.RequiredUniqueChars = 0;
